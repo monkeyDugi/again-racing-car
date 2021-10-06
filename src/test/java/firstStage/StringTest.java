@@ -39,14 +39,18 @@ class StringTest {
         assertThat(str.charAt(2)).isEqualTo('c');
     }
 
-    @DisplayName("요구사항 3 : chatAt()로 특정 위치 문자를 가져올 때 위치를 벗어나면 예외 발생")
+    @DisplayName("요구사항 3 : chatAt()로 특정 위치 문자를 가져올 때 위치를 벗어나면 예외 발생") 
     @Test
     void chatAtException() {
+        // jordy: 아래 처럼 given 절은 만들고 then절에서 활용하면 좀 더 와닿지 않을까 하는 생각이 드네요 ㅋㅋㅋ
+        // int accessingCharIndex = 5;
+        // String expectedMessage = String.format("range: %d", accessingCharIndex);
+        
         String str = "abc";
 
         assertThatThrownBy(() -> {
-            assertThat(str.charAt(5)).isEqualTo('c');
+            assertThat(str.charAt(5)).isEqualTo('c'); // jordy: assertThat으로 감싸지 않고 str.charAt(5) 정도만 하셔도 될거 같습니다.
         }).isInstanceOf(IndexOutOfBoundsException.class)
-        .hasMessageContaining("range: 5");
+        .hasMessageContaining("range: 5"); // jordy: 메시지까지 체크하신건 너무 좋은거 같습니다.
     }
 }
