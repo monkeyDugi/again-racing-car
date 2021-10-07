@@ -3,6 +3,10 @@ package firstStage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -42,11 +46,13 @@ class StringTest {
     @DisplayName("요구사항 3 : chatAt()로 특정 위치 문자를 가져올 때 위치를 벗어나면 예외 발생")
     @Test
     void chatAtException() {
+        // given
         String str = "abc";
+        int accessingCharIndex = 5;
+        String expectedMessage = String.format("range: %d", accessingCharIndex);
 
-        assertThatThrownBy(() -> {
-            assertThat(str.charAt(5)).isEqualTo('c');
-        }).isInstanceOf(IndexOutOfBoundsException.class)
-        .hasMessageContaining("range: 5");
+        // then
+        assertThatThrownBy(() -> str.charAt(accessingCharIndex)).isInstanceOf(IndexOutOfBoundsException.class)
+        .hasMessageContaining(expectedMessage);
     }
 }
