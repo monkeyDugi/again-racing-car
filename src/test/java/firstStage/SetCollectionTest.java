@@ -24,33 +24,36 @@ class SetCollectionTest {
     @DisplayName("요구사항 1 : Set의 size() 메소드를 활용해 Set의 크기 확인")
     @Test
     void size() {
-        List<Integer> list = Arrays.asList(1, 1, 2, 3);
-        Set<Integer> numbers = new HashSet<>(list);
-        int setSize = numbers.size();
+        // given
+        Set<Integer> numbers = new HashSet<>(Arrays.asList(1, 1, 2, 3));
 
-        int size = numbers.size();
+        // when
+        int expected = numbers.size();
 
-        assertThat(size).isEqualTo(setSize);
+        // then
+        assertThat(numbers.size()).isEqualTo(expected);
     }
 
     @DisplayName("요구사항 2 : Set의 contains() 메소드로 1,2,3 값 존재 확인")
     @ValueSource(ints= {1, 2, 3})
     @ParameterizedTest
     void containsValueSource(int number) {
-        List<Integer> list = Arrays.asList(1, 1, 2, 3);
-        Set<Integer> numbers = new HashSet<>(list);
+        // given
+        Set<Integer> numbers = new HashSet<>(Arrays.asList(1, 1, 2, 3));
 
+        // then
         assertThat(numbers.contains(number)).isTrue();
-        assertThat(numbers.containsAll(list)).isTrue(); // containsAll도 사용해 봤다.
     }
 
     @DisplayName("요구사항 3 : CsvSource를 사용해 입출력 모두 테스트 한다.")
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     @ParameterizedTest
     void containsCsvSource(int input, boolean expected) {
+        // given
         List<Integer> list = Arrays.asList(1, 1, 2, 3);
         Set<Integer> numbers = new HashSet<>(list);
 
+        // then
         assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }

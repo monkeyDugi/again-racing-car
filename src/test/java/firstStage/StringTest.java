@@ -11,29 +11,37 @@ class StringTest {
     @DisplayName("요구사항 1 : ',' 구분자로 split 배열반환 확인")
     @Test
     void split() {
+        // given
         String str = "1,2";
         String regex = ",";
 
+        // when
         String[] arrStr = str.split(regex);
 
+        // then
         assertThat(arrStr).containsExactly("1", "2");
     }
 
     @DisplayName("요구사항 2 : substring으로 '1,2'문자열만 반환")
     @Test
     void substring() {
+        // given
         String str = "(1,2)";
 
+        // when
         String subStr = str.substring(1, 4);
 
+        // then
         assertThat(subStr).isEqualTo("1,2");
     }
 
     @DisplayName("요구사항 3 : charAt() 메서드로 위치의 문자 가져오기")
     @Test
     void charAt() {
+        // given
         String str = "abc";
 
+        // then
         assertThat(str.charAt(0)).isEqualTo('a');
         assertThat(str.charAt(1)).isEqualTo('b');
         assertThat(str.charAt(2)).isEqualTo('c');
