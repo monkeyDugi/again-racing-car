@@ -16,20 +16,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class SetCollectionTest {
 
-    private Set<Integer> numbers;
-    private int setSize;
-    private List<Integer> list;
-
     @BeforeEach
     void setUp() {
-        list = Arrays.asList(1, 1, 2, 3);
-        numbers = new HashSet<>(list);
-        setSize = numbers.size();
+
     }
 
     @DisplayName("요구사항 1 : Set의 size() 메소드를 활용해 Set의 크기 확인")
     @Test
     void size() {
+        List<Integer> list = Arrays.asList(1, 1, 2, 3);
+        Set<Integer> numbers = new HashSet<>(list);
+        int setSize = numbers.size();
+
         int size = numbers.size();
 
         assertThat(size).isEqualTo(setSize);
@@ -39,15 +37,20 @@ class SetCollectionTest {
     @ValueSource(ints= {1, 2, 3})
     @ParameterizedTest
     void containsValueSource(int number) {
+        List<Integer> list = Arrays.asList(1, 1, 2, 3);
+        Set<Integer> numbers = new HashSet<>(list);
+
         assertThat(numbers.contains(number)).isTrue();
         assertThat(numbers.containsAll(list)).isTrue(); // containsAll도 사용해 봤다.
     }
 
-    @DisplayName("")
-    @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"})
-//    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    @DisplayName("요구사항 3 : CsvSource를 사용해 입출력 모두 테스트 한다.")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     @ParameterizedTest
     void containsCsvSource(int input, boolean expected) {
+        List<Integer> list = Arrays.asList(1, 1, 2, 3);
+        Set<Integer> numbers = new HashSet<>(list);
+
         assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }
