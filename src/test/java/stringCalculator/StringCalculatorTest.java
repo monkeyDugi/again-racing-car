@@ -1,3 +1,5 @@
+package stringCalculator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -64,19 +66,6 @@ class StringCalculatorTest {
         assertThat(actualValue).isEqualTo(expected);
     }
 
-    @DisplayName("0으로 나눌 경우 ArithmeticException 발생")
-    @Test
-    void divideByZero() {
-        // given
-        StringCalculator stringCalculator = new StringCalculator();
-        String input = "2 / 0";
-
-        // when
-        assertThatThrownBy(() -> stringCalculator.calculateString(input))
-                .isInstanceOf(ArithmeticException.class)
-                .hasMessageContaining("0으로 나눌 수 없습니다.");
-    }
-
     @DisplayName("모든 연산자가 들어간 문자열을 계산 한다.")
     @CsvSource(value = {"2 + 3 * 4 / 2:10"}, delimiter = ':')
     @ParameterizedTest
@@ -93,40 +82,29 @@ class StringCalculatorTest {
 
     @DisplayName("입력 값이 공백 문자열, 빈 문자열이면 IllegalArgumentException")
     @Test
-    void validateEmpty() {
+    void isBlankEmpty() {
         // given
         StringCalculator stringCalculator = new StringCalculator();
         String input = "";
 
         // when
         assertThatThrownBy(() -> stringCalculator.calculateString(input))
+                // then
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("빈 문자는 입력할 수 없습니다.");
     }
 
     @DisplayName("입력 null이면 IllegalArgumentException")
     @Test
-    void validateNull() {
+    void isBlankNull() {
         // given
         StringCalculator stringCalculator = new StringCalculator();
         String input = null;
 
-        // when
+        // when, then
         assertThatThrownBy(() -> stringCalculator.calculateString(input))
+                // then
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("빈 문자는 입력할 수 없습니다.");
-    }
-
-    @DisplayName("사칙연산 기호가 아니면 IllegalArgumentException")
-    @Test
-    void validateInvalidOperators() {
-        // given
-        StringCalculator stringCalculator = new StringCalculator();
-        String input = "2 & 4";
-
-        // when
-        assertThatThrownBy(() -> stringCalculator.calculateString(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("올바르지 않은 연산자가 포함되었습니다. 사칙연산 기호(+, -, *, /)를 입력 해주세요");
     }
 }
