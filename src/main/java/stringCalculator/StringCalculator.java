@@ -2,6 +2,9 @@ package stringCalculator;
 
 public class StringCalculator {
 
+    private static final int FIRST_OPERAND_INDEX = 0;
+    private static final int FIRST_OPERATOR_INDEX = 1;
+    private static final int NEXT_OPERATOR_COUNT = 2;
 
     public int calculateString(String operandAndOperator) {
         validateBlank(operandAndOperator);
@@ -13,8 +16,8 @@ public class StringCalculator {
         String[] arrOperandOrOperator  = operandAndOperator.split(" ");
         int length = arrOperandOrOperator.length;
 
-        int result = toInt(arrOperandOrOperator[0]);
-        for (int i = 1; i < length; i += 2) {
+        int result = toInt(arrOperandOrOperator[FIRST_OPERAND_INDEX]);
+        for (int i = FIRST_OPERATOR_INDEX; i < length; i += NEXT_OPERATOR_COUNT) {
             String operator = arrOperandOrOperator[i];
             int operand = toInt(arrOperandOrOperator[i + 1]);
 
