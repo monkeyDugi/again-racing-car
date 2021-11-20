@@ -4,24 +4,34 @@ import java.util.Objects;
 
 public class Car {
 
-    private int index = 0;
+    CarIndex index;
 
-    public Car() {}
+    public Car() {
+        this.index = new CarIndex();
+    }
 
     public Car(int index) {
-        this.index = index;
+        this.index = new CarIndex(index);
     }
 
     public void move(CustomRandomAble random) {
         MoveStrategy moveStrategy = new MoveStrategy();
 
         if (moveStrategy.isMove(random)) {
-            this.index++;
+            index.moveForward();
+
+            return;
         }
+
+        index.stop();
     }
 
     public int getIndex() {
-        return index;
+        return index.getLastIndex();
+    }
+
+    public int getHistoryIndex(int index) {
+        return this.index.getIndex(index);
     }
 
     @Override
@@ -29,11 +39,11 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return index == car.index;
+        return Objects.equals(getIndex(), car.getIndex());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index);
+        return Objects.hash(getIndex());
     }
 }

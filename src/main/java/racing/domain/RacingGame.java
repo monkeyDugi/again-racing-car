@@ -2,15 +2,15 @@ package racing.domain;
 
 public class RacingGame {
 
-    private final CarCollection cars;
+    private final CarCollection carCollection;
 
-    public RacingGame(CarCollection cars) {
-        this.cars = cars;
+    public RacingGame(CarCollection carCollection) {
+        this.carCollection = carCollection;
     }
 
     public void start(int numberOfMoves) {
         for (int i = 0; i < numberOfMoves; i++) {
-            cars.move(new CustomRandom());
+            carCollection.move(new CustomRandom());
         }
     }
 }

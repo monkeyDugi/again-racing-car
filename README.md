@@ -298,4 +298,5 @@ int number = scanner.nextInt();
 - [x] n대의 자동차가 이동 성공, 이동 실패 하기
 - [x] 주어진 횟수만큼 자동차들이 이동 시도 하기
 - [x] InputView UI 구현
-- [ ] ResultView UI 구현
+- [x] ResultView UI 구현(아래는 구현 중 추가된 분리 사항)
+  - [x] 각 자동차의 index를 기록하기(각 기록을 출력 해주어야 하기 때문)

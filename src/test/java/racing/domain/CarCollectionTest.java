@@ -16,15 +16,15 @@ class CarCollectionTest {
         // given
         int participatingCars = 3;
 
-        CarCollection cars = new CarCollection(participatingCars);
+        CarCollection carCollection = new CarCollection(participatingCars);
 
         // when
-        cars.move(() -> 4);
+        carCollection.move(() -> 4);
 
         // then
-        List<Car> carList = Arrays.asList(new Car(1), new Car(1), new Car(1));
+        List<Car> carList = Arrays.asList(new Car(2), new Car(2), new Car(2));
         CarCollection expected = new CarCollection(carList);
-        assertThat(cars).isEqualTo(expected);
+        assertThat(carCollection).isEqualTo(expected);
     }
 
     @DisplayName("n대의 참여 자동자 모두 이동 실패")
@@ -33,14 +33,14 @@ class CarCollectionTest {
         // given
         int participatingCars = 3;
 
-        CarCollection cars = new CarCollection(participatingCars);
+        CarCollection carCollection = new CarCollection(participatingCars);
 
         // when
-        cars.move(() -> 3);
+        carCollection.move(() -> 3);
 
         // then
-        List<Car> carList = Arrays.asList(new Car(0), new Car(0), new Car(0));
-        CarCollection expected = new CarCollection(carList);
-        assertThat(cars).isEqualTo(expected);
+        List<Car> cars = Arrays.asList(new Car(1), new Car(1), new Car(1));
+        CarCollection expected = new CarCollection(cars);
+        assertThat(carCollection).isEqualTo(expected);
     }
 }

@@ -1,6 +1,7 @@
 package racing.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,16 +25,20 @@ public class CarCollection {
         }
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarCollection that = (CarCollection) o;
-        return Objects.equals(cars, that.cars);
+        return Objects.equals(getCars(), that.getCars());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cars);
+        return Objects.hash(getCars());
     }
 }
