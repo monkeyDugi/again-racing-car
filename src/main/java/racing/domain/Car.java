@@ -1,25 +1,23 @@
 package racing.domain;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Objects;
 
 public class Car {
 
-    CarIndex index;
+    private final CarIndex index;
+    private final MoveStrategyAble moveStrategy;
 
-    public Car() {
+    public Car(MoveStrategyAble moveStrategy) {
         this.index = new CarIndex();
+        this.moveStrategy = moveStrategy;
     }
 
-    public Car(int index) {
+    public Car(int index, MoveStrategyAble moveStrategy) {
         this.index = new CarIndex(index);
+        this.moveStrategy = moveStrategy;
     }
 
     public void move(CustomRandomAble random) {
-        MoveStrategy moveStrategy = new MoveStrategy();
-
         if (moveStrategy.isMove(random)) {
             index.moveForward();
 

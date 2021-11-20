@@ -11,7 +11,7 @@ class CarTest {
     @Test
     void move() {
         // given
-        Car car = new Car();
+        Car car = new Car(new MoveStrategy());
 
         // when
         car.move(() -> 4);
@@ -25,7 +25,7 @@ class CarTest {
     @Test
     void no_move() {
         // given
-        Car car = new Car();
+        Car car = new Car(new MoveStrategy());
 
         // when
         car.move(() -> 3);

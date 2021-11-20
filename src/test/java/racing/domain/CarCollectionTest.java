@@ -22,7 +22,11 @@ class CarsTest {
         Cars.move(() -> 4);
 
         // then
-        List<Car> carList = Arrays.asList(new Car(2), new Car(2), new Car(2));
+        List<Car> carList = Arrays.asList(
+                                            new Car(2, new MoveStrategy()),
+                                            new Car(2, new MoveStrategy()),
+                                            new Car(2, new MoveStrategy())
+                                        );
         Cars expected = new Cars(carList);
         assertThat(Cars).isEqualTo(expected);
     }
@@ -39,7 +43,11 @@ class CarsTest {
         Cars.move(() -> 3);
 
         // then
-        List<Car> cars = Arrays.asList(new Car(1), new Car(1), new Car(1));
+        List<Car> cars = Arrays.asList(
+                                        new Car(1, new MoveStrategy()),
+                                        new Car(1, new MoveStrategy()),
+                                        new Car(1, new MoveStrategy())
+                                    );
         Cars expected = new Cars(cars);
         assertThat(Cars).isEqualTo(expected);
     }

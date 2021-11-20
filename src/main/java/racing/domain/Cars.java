@@ -15,7 +15,7 @@ public class Cars {
 
     public Cars(int participatingCars) {
         for (int i = 0; i < participatingCars; i++) {
-            cars.add(new Car());
+            cars.add(new Car(new MoveStrategy()));
         }
     }
 

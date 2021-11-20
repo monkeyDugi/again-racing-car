@@ -7,7 +7,7 @@ import java.util.Objects;
 public class CarIndex {
 
     private static final int START_INDEX = 1;
-    private List<Integer> indexes = new ArrayList<>();
+    private final List<Integer> indexes = new ArrayList<>();
 
     public CarIndex() {
         this.indexes.add(START_INDEX);
@@ -15,7 +15,7 @@ public class CarIndex {
 
     public CarIndex(int index) {
         if (index < 1) {
-            throw new IllegalArgumentException("최소 시작 index는 1이상 이어야 합니다.");
+            throw new IllegalArgumentException("최소 시작 index는 " + START_INDEX + "이상 이어야 합니다.");
         }
 
         this.indexes.add(index);
@@ -29,7 +29,7 @@ public class CarIndex {
         indexes.add(getLastIndex());
     }
 
-    public Integer getLastIndex() {
+    public int getLastIndex() {
         return indexes.get(size() - 1);
     }
 
