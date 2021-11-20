@@ -18,7 +18,6 @@ public class Car {
     }
 
     public void move(CustomRandomAble random) {
-        Collection<Car> car = new HashSet<>();
         MoveStrategy moveStrategy = new MoveStrategy();
 
         if (moveStrategy.isMove(random)) {
