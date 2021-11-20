@@ -1,5 +1,8 @@
 package racing.domain;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class Car {
@@ -15,6 +18,7 @@ public class Car {
     }
 
     public void move(CustomRandomAble random) {
+        Collection<Car> car = new HashSet<>();
         MoveStrategy moveStrategy = new MoveStrategy();
 
         if (moveStrategy.isMove(random)) {

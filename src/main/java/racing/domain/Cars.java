@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class CarCollection {
+public class Cars {
 
     private List<Car> cars = new ArrayList<>();
 
-    public CarCollection(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    public CarCollection(int participatingCars) {
+    public Cars(int participatingCars) {
         for (int i = 0; i < participatingCars; i++) {
             cars.add(new Car());
         }
@@ -25,7 +25,7 @@ public class CarCollection {
         }
     }
 
-    public List<Car> getCars() {
+    public List<Car> get() {
         return Collections.unmodifiableList(cars);
     }
 
@@ -33,12 +33,12 @@ public class CarCollection {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarCollection that = (CarCollection) o;
-        return Objects.equals(getCars(), that.getCars());
+        Cars that = (Cars) o;
+        return Objects.equals(get(), that.get());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCars());
+        return Objects.hash(get());
     }
 }

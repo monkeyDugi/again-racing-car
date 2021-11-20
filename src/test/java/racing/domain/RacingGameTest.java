@@ -15,10 +15,10 @@ class RacingGameTest {
         // given
         int participatingCars = 3;
 
-        CarCollection carCollection = new CarCollection(participatingCars);
+        Cars Cars = new Cars(participatingCars);
 
         int numberOfMoves = 5;
-        RacingGame racingGame = new RacingGame(carCollection);
+        RacingGame racingGame = new RacingGame(Cars);
         // when
         racingGame.start(numberOfMoves);
     }
