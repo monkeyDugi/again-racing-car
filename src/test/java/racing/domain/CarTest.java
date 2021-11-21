@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
@@ -42,6 +43,45 @@ class CarTest {
     void create_car_name() {
         // given
         String name = "dugi";
+
+        // when
+        Car car = new Car(new MoveStrategy(), name);
+
+        // then
+        assertThat(car.getName()).isEqualTo(name);
+    }
+
+    @DisplayName("자동차 이름은 5자를 초과할 수 없다.")
+    @Test
+    void car_name_max_exception() {
+        // given
+        String name = "sports";
+
+        // when
+        assertThatThrownBy(() -> new Car(new MoveStrategy(), name))
+                // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 5자를 초과할 수 없습니다.");
+    }
+
+    @DisplayName("자동차 이름은 1자 보다 작을 수 없다.")
+    @Test
+    void car_name_minimum_exception() {
+        // given
+        String name = "  ";
+
+        // when
+        assertThatThrownBy(() -> new Car(new MoveStrategy(), name))
+                // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 1자 이상이어야 합니다.");
+    }
+
+    @DisplayName("자동차 이름은 1자 이상이어야 한다.")
+    @Test
+    void car_name_minimum() {
+        // given
+        String name = "s";
 
         // when
         Car car = new Car(new MoveStrategy(), name);

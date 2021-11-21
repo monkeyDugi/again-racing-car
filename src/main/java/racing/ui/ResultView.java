@@ -29,6 +29,8 @@ public class ResultView {
 
     private static void printCarLine(Car car, int i) {
         StringBuilder sb = new StringBuilder();
+        sb.append(car.getName());
+        sb.append(" : ");
 
         int index = car.getHistoryIndex(i);
         for (int j = 0; j < index; j++) {
