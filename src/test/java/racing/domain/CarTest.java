@@ -11,7 +11,8 @@ class CarTest {
     @Test
     void move() {
         // given
-        Car car = new Car(new MoveStrategy());
+        String name = "dugi";
+        Car car = new Car(new MoveStrategy(), name);
 
         // when
         car.move(() -> 4);
@@ -25,7 +26,8 @@ class CarTest {
     @Test
     void no_move() {
         // given
-        Car car = new Car(new MoveStrategy());
+        String name = "dugi";
+        Car car = new Car(new MoveStrategy(), name);
 
         // when
         car.move(() -> 3);
@@ -33,5 +35,18 @@ class CarTest {
 
         // then
         assertThat(carIndex).isEqualTo(1);
+    }
+
+    @DisplayName("자동차는 이름을 갖는다.")
+    @Test
+    void create_car_name() {
+        // given
+        String name = "dugi";
+
+        // when
+        Car car = new Car(new MoveStrategy(), name);
+
+        // then
+        assertThat(car.getName()).isEqualTo(name);
     }
 }

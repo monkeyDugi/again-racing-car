@@ -6,15 +6,18 @@ public class Car {
 
     private final CarIndex index;
     private final MoveStrategyAble moveStrategy;
+    private final String name;
 
-    public Car(MoveStrategyAble moveStrategy) {
-        this.index = new CarIndex();
-        this.moveStrategy = moveStrategy;
-    }
-
-    public Car(int index, MoveStrategyAble moveStrategy) {
+    public Car(int index, MoveStrategyAble moveStrategy, String name) {
         this.index = new CarIndex(index);
         this.moveStrategy = moveStrategy;
+        this.name = name;
+    }
+
+    public Car(MoveStrategyAble moveStrategy, String name) {
+        this.index = new CarIndex();
+        this.moveStrategy = moveStrategy;
+        this.name = name;
     }
 
     public void move(CustomRandomAble random) {
@@ -29,6 +32,10 @@ public class Car {
 
     public int getIndex() {
         return index.getLastIndex();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getHistoryIndex(int index) {

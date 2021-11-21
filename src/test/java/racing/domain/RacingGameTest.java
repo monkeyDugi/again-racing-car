@@ -14,8 +14,9 @@ class RacingGameTest {
     void all_cars_move_attempt() {
         // given
         int participatingCars = 3;
+        String participatingCarNames = "dugi,manse,pobi";
 
-        Cars Cars = new Cars(participatingCars);
+        Cars Cars = new Cars(participatingCarNames);
 
         int numberOfMoves = 5;
         RacingGame racingGame = new RacingGame(Cars);

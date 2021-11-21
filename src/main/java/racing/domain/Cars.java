@@ -13,9 +13,11 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars(int participatingCars) {
-        for (int i = 0; i < participatingCars; i++) {
-            cars.add(new Car(new MoveStrategy()));
+    public Cars(String participatingCarNames) {
+        String[] arrParticipatingCarNames = participatingCarNames.split(",");
+
+        for (String participatingCarName : arrParticipatingCarNames) {
+            cars.add(new Car(new MoveStrategy(), participatingCarName));
         }
     }
 
@@ -27,6 +29,10 @@ public class Cars {
 
     public List<Car> get() {
         return Collections.unmodifiableList(cars);
+    }
+
+    public int size() {
+        return cars.size();
     }
 
     @Override
