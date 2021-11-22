@@ -9,8 +9,10 @@ public class RacingGame {
     }
 
     public void start(int numberOfMoves) {
+        CustomRandomAble customRandom = new CustomRandom();
+
         for (int i = 0; i < numberOfMoves; i++) {
-            Cars.move(new CustomRandom());
+            Cars.move(customRandom);
         }
     }
 }
