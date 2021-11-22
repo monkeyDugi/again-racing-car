@@ -7,6 +7,8 @@ import java.util.List;
 
 public class ResultView {
 
+    private ResultView() {}
+
     private static final String INDEX_LINE = "-";
 
     public static void showRacingResult(Cars Cars, int numberOfMoves) {
