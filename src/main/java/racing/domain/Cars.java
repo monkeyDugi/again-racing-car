@@ -15,9 +15,10 @@ public class Cars {
 
     public Cars(String participatingCarNames) {
         String[] arrParticipatingCarNames = participatingCarNames.split(",");
+        MoveStrategyAble moveStrategy = new MoveStrategy();
 
         for (String participatingCarName : arrParticipatingCarNames) {
-            cars.add(new Car(new MoveStrategy(), participatingCarName));
+            cars.add(new Car(moveStrategy, participatingCarName));
         }
     }
 
