@@ -2,6 +2,7 @@ package racing;
 
 import racing.domain.Cars;
 import racing.domain.RacingGame;
+import racing.domain.Winner;
 import racing.ui.InputView;
 import racing.ui.ResultView;
 
@@ -13,9 +14,10 @@ public class Controller {
 
         Cars cars = new Cars(participatingCarNames);
         RacingGame racingGame = new RacingGame(cars);
-
         racingGame.start(numberOfMoves);
 
-        ResultView.showRacingResult(cars, numberOfMoves);
+        Winner winner = new Winner(cars);
+
+        ResultView.showRacingResult(cars, winner, numberOfMoves);
     }
 }

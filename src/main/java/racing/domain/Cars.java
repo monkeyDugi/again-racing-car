@@ -32,12 +32,6 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<String> getWinner() {
-        // TODO :
-
-        return null;
-    }
-
     public int size() {
         return cars.size();
     }
