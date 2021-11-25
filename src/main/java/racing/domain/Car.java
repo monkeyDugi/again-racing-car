@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int MINIMUM_NAME_LENGTH = 1;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
+
     private final CarIndex index;
     private final MoveStrategyAble moveStrategy;
     private final String name;
@@ -25,11 +28,11 @@ public class Car {
     }
 
     private void validateCarName() {
-        if (name == null || name.trim().length() < 1) {
+        if (name == null || name.trim().length() < MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 1자 이상이어야 합니다.");
         }
 
-        if (name.length() > 5) {
+        if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.");
         }
 
