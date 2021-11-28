@@ -10,6 +10,7 @@ public class ResultView {
     private ResultView() {}
 
     private static final String INDEX_LINE = "-";
+    private static final String NAME_INDEX_LINE_DELIMITER = " : ";
 
     public static void showRacingResult(Cars cars, int numberOfMoves) {
         System.out.println();
@@ -33,7 +34,7 @@ public class ResultView {
     private static void printCarLine(Car car, int i) {
         StringBuilder sb = new StringBuilder();
         sb.append(car.getName());
-        sb.append(" : ");
+        sb.append(NAME_INDEX_LINE_DELIMITER);
 
         int index = car.getHistoryIndex(i);
         for (int j = 0; j < index; j++) {
