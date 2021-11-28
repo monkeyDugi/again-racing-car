@@ -19,7 +19,6 @@ class CarIndexTest {
         for (int i = 0; i < increaseCount; i++) {
             carIndex.moveForward();
         }
-
         carIndex.stop();
 
         // then

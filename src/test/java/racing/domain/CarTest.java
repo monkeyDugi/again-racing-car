@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
@@ -11,7 +12,8 @@ class CarTest {
     @Test
     void move() {
         // given
-        Car car = new Car(new MoveStrategy());
+        String name = "dugi";
+        Car car = new Car(name, new MoveStrategy());
 
         // when
         car.move(() -> 4);
@@ -25,7 +27,8 @@ class CarTest {
     @Test
     void no_move() {
         // given
-        Car car = new Car(new MoveStrategy());
+        String name = "dugi";
+        Car car = new Car(name, new MoveStrategy());
 
         // when
         car.move(() -> 3);
@@ -33,5 +36,57 @@ class CarTest {
 
         // then
         assertThat(carIndex).isEqualTo(1);
+    }
+
+    @DisplayName("자동차는 이름을 갖는다.")
+    @Test
+    void create_car_name() {
+        // given
+        String name = "dugi";
+
+        // when
+        Car car = new Car(name, new MoveStrategy());
+
+        // then
+        assertThat(car.getName()).isEqualTo(name);
+    }
+
+    @DisplayName("자동차 이름은 5자를 초과할 수 없다.")
+    @Test
+    void car_name_max_exception() {
+        // given
+        String name = "sports";
+
+        // when
+        assertThatThrownBy(() -> new Car(name, new MoveStrategy()))
+                // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 5자를 초과할 수 없습니다.");
+    }
+
+    @DisplayName("자동차 이름은 1자 보다 작을 수 없다.")
+    @Test
+    void car_name_minimum_exception() {
+        // given
+        String name = "  ";
+
+        // when
+        assertThatThrownBy(() -> new Car(name, new MoveStrategy()))
+                // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 1자 이상이어야 합니다.");
+    }
+
+    @DisplayName("자동차 이름은 1자 이상이어야 한다.")
+    @Test
+    void car_name_minimum() {
+        // given
+        String name = "s";
+
+        // when
+        Car car = new Car(name, new MoveStrategy());
+
+        // then
+        assertThat(car.getName()).isEqualTo(name);
     }
 }

@@ -8,12 +8,11 @@ import racing.ui.ResultView;
 public class Controller {
 
     public void run() {
-        int participatingCars = InputView.answerParticipatingCars();
+        String participatingCarNames = InputView.answerParticipatingCars();
         int numberOfMoves = InputView.answerNumberOfMoves();
 
-        Cars cars = new Cars(participatingCars);
+        Cars cars = new Cars(participatingCarNames);
         RacingGame racingGame = new RacingGame(cars);
-
         racingGame.start(numberOfMoves);
 
         ResultView.showRacingResult(cars, numberOfMoves);

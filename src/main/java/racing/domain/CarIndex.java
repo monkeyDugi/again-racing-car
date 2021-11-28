@@ -14,7 +14,7 @@ public class CarIndex {
     }
 
     public CarIndex(int index) {
-        if (index < 1) {
+        if (index < START_INDEX) {
             throw new IllegalArgumentException("최소 시작 index는 " + START_INDEX + "이상 이어야 합니다.");
         }
 
