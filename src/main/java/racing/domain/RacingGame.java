@@ -2,10 +2,10 @@ package racing.domain;
 
 public class RacingGame {
 
-    private final Cars Cars;
+    private final Cars cars;
 
-    public RacingGame(Cars Cars) {
-        this.Cars = Cars;
+    public RacingGame(Cars cars) {
+        this.cars = cars;
     }
 
     public void start(int numberOfMoves) {
@@ -22,7 +22,7 @@ public class RacingGame {
         // 그리고 Winner -> getWinners() 메서드도 리팩토링 필요. 지저분함.
         for (int i = 0; i < numberOfMoves - 1; i++) {
 //        for (int i = 0; i < numberOfMoves; i++) {
-            Cars.move(customRandom);
+            cars.move(customRandom);
         }
     }
 }
