@@ -2,7 +2,6 @@ package racing.ui;
 
 import racing.domain.Car;
 import racing.domain.Cars;
-import racing.domain.Winner;
 
 import java.util.List;
 
@@ -12,21 +11,21 @@ public class ResultView {
 
     private static final String INDEX_LINE = "-";
 
-    public static void showRacingResult(Cars Cars, Winner winner, int numberOfMoves) {
+    public static void showRacingResult(Cars cars, int numberOfMoves) {
         System.out.println();
         System.out.println("실행 결과");
 
         for (int i = 0; i < numberOfMoves; i++) {
-            printCarsLine(Cars, i);
+            printCarsLine(cars, i);
             System.out.println();
         }
 
-        printWinners(winner);
+        printWinners(cars.getWinners());
     }
 
-    private static void printCarsLine(Cars Cars, int i) {
-        List<Car> cars = Cars.get();
-        for (Car car : cars) {
+    private static void printCarsLine(Cars cars, int i) {
+        List<Car> carList = cars.get();
+        for (Car car : carList) {
             printCarLine(car, i);
         }
     }
@@ -44,9 +43,8 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    private static void printWinners(Winner winner) {
+    private static void printWinners(List<String> winners) {
         StringBuilder sb = new StringBuilder();
-        List<String> winners = winner.getWinners();
 
         for (String winnerName : winners) {
             appendWinner(sb, winnerName);

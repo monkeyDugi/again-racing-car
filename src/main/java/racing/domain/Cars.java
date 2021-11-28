@@ -28,6 +28,35 @@ public class Cars {
         }
     }
 
+    public List<String> getWinners() {
+        int max = maxIndex();
+        return getWinners(max);
+    }
+
+    private List<String> getWinners(int max) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            addWinners(max, winners, car);
+        }
+
+        return winners;
+    }
+
+    private void addWinners(int max, List<String> winners, Car car) {
+        if (car.getIndex() == max) {
+            winners.add(car.getName());
+        }
+    }
+
+    private int maxIndex() {
+        List<Integer> carIndexes = new ArrayList<>();
+        for (Car car : cars) {
+            carIndexes.add(car.getIndex());
+        }
+
+        return Collections.max(carIndexes);
+    }
+
     public List<Car> get() {
         return Collections.unmodifiableList(cars);
     }

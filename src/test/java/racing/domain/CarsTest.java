@@ -28,8 +28,8 @@ class CarsTest {
         // then
         List<Car> carList = Arrays.asList(
                                             new Car(carName1, 2, new MoveStrategy()),
-                                            new Car(carName1, 2, new MoveStrategy()),
-                                            new Car(carName1, 2, new MoveStrategy())
+                                            new Car(carName2, 2, new MoveStrategy()),
+                                            new Car(carName3, 2, new MoveStrategy())
                                         );
         Cars expected = new Cars(carList);
 
@@ -56,8 +56,8 @@ class CarsTest {
         // then
         List<Car> carList = Arrays.asList(
                                         new Car(carName1,1, new MoveStrategy()),
-                                        new Car(carName1,1, new MoveStrategy()),
-                                        new Car(carName1,1, new MoveStrategy())
+                                        new Car(carName2,1, new MoveStrategy()),
+                                        new Car(carName3,1, new MoveStrategy())
                                     );
         Cars expected = new Cars(carList);
 
@@ -78,5 +78,28 @@ class CarsTest {
         // then
         int expectedParticipatingCarsOfNumber = 3;
         assertThat(cars.size()).isEqualTo(expectedParticipatingCarsOfNumber);
+    }
+
+    @DisplayName("우승자를 구한다. 기록이 같으면 모두 우승자이다.")
+    @Test
+    void getWinner() {
+        // given
+        String carName1 = "dugi";
+        String carName2 = "manse";
+        String carName3 = "pobi";
+
+        Cars cars = new Cars(Arrays.asList(
+                new Car(carName1, 2, new MoveStrategy()),
+                new Car(carName2, 1, new MoveStrategy()),
+                new Car(carName3, 2, new MoveStrategy())
+        )
+        );
+
+        // when
+        List<String> winners = cars.getWinners();
+
+        // then
+        List<String> expectedWinner = Arrays.asList(carName1, carName3);
+        assertThat(winners).isEqualTo(expectedWinner);
     }
 }
