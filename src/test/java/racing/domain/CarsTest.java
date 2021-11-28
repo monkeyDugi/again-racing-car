@@ -20,19 +20,22 @@ class CarsTest {
 
         String participatingCarNames = "dugi,manse,pobi";
 
-        Cars Cars = new Cars(participatingCarNames);
+        Cars cars = new Cars(participatingCarNames);
 
         // when
-        Cars.move(() -> 4);
+        cars.move(() -> 4);
 
         // then
         List<Car> carList = Arrays.asList(
-                                            new Car(2, new MoveStrategy(), carName1),
-                                            new Car(2, new MoveStrategy(), carName2),
-                                            new Car(2, new MoveStrategy(), carName3)
+                                            new Car(carName1, 2, new MoveStrategy()),
+                                            new Car(carName1, 2, new MoveStrategy()),
+                                            new Car(carName1, 2, new MoveStrategy())
                                         );
         Cars expected = new Cars(carList);
-        assertThat(Cars).isEqualTo(expected);
+
+        assertThat(cars.get().get(0).getIndex()).isEqualTo(expected.get().get(0).getIndex());
+        assertThat(cars.get().get(1).getIndex()).isEqualTo(expected.get().get(1).getIndex());
+        assertThat(cars.get().get(2).getIndex()).isEqualTo(expected.get().get(2).getIndex());
     }
 
     @DisplayName("n대의 참여 자동자 모두 이동 실패")
@@ -45,19 +48,22 @@ class CarsTest {
 
         String participatingCarNames = "dugi,manse,pobi";
 
-        Cars Cars = new Cars(participatingCarNames);
+        Cars cars = new Cars(participatingCarNames);
 
         // when
-        Cars.move(() -> 3);
+        cars.move(() -> 3);
 
         // then
-        List<Car> cars = Arrays.asList(
-                                        new Car(1, new MoveStrategy(), carName1),
-                                        new Car(1, new MoveStrategy(), carName2),
-                                        new Car(1, new MoveStrategy(), carName3)
+        List<Car> carList = Arrays.asList(
+                                        new Car(carName1,1, new MoveStrategy()),
+                                        new Car(carName1,1, new MoveStrategy()),
+                                        new Car(carName1,1, new MoveStrategy())
                                     );
-        Cars expected = new Cars(cars);
-        assertThat(Cars).isEqualTo(expected);
+        Cars expected = new Cars(carList);
+
+        assertThat(cars.get().get(0).getIndex()).isEqualTo(expected.get().get(0).getIndex());
+        assertThat(cars.get().get(1).getIndex()).isEqualTo(expected.get().get(1).getIndex());
+        assertThat(cars.get().get(2).getIndex()).isEqualTo(expected.get().get(2).getIndex());
     }
 
     @DisplayName("각 자동차 이름을 기준으로 참여 자동차를 생성한다.")

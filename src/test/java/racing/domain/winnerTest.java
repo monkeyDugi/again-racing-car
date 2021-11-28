@@ -19,9 +19,9 @@ class winnerTest {
         String carName3 = "pobi";
 
         Cars cars = new Cars(Arrays.asList(
-                                            new Car(2, new MoveStrategy(), carName1),
-                                            new Car(1, new MoveStrategy(), carName2),
-                                            new Car(2, new MoveStrategy(), carName3)
+                                            new Car(carName1, 2, new MoveStrategy()),
+                                            new Car(carName2, 1, new MoveStrategy()),
+                                            new Car(carName3, 2, new MoveStrategy())
                                           )
                             );
         Winner winner = new Winner(cars);

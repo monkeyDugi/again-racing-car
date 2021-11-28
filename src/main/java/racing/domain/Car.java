@@ -4,38 +4,22 @@ import java.util.Objects;
 
 public class Car {
 
-    private static final int MINIMUM_NAME_LENGTH = 1;
-    private static final int MAXIMUM_NAME_LENGTH = 5;
-
     private final CarIndex index;
     private final MoveStrategyAble moveStrategy;
-    private final String name;
+    private final CarName name;
 
-    public Car(int index, MoveStrategyAble moveStrategy, String name) {
-        this.index = new CarIndex(index);
-        this.moveStrategy = moveStrategy;
-        this.name = name;
-
-        validateCarName();
+    public Car(String name, int index, MoveStrategyAble moveStrategy) {
+        this(name, new CarIndex(index), moveStrategy);
     }
 
-    public Car(MoveStrategyAble moveStrategy, String name) {
-        this.index = new CarIndex();
-        this.moveStrategy = moveStrategy;
-        this.name = name;
-
-        validateCarName();
+    public Car(String name, MoveStrategyAble moveStrategy) {
+        this(name, new CarIndex(), moveStrategy);
     }
 
-    private void validateCarName() {
-        if (name == null || name.trim().length() < MINIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 1자 이상이어야 합니다.");
-        }
-
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다.");
-        }
-
+    private Car(String name, CarIndex carIndex, MoveStrategyAble moveStrategy) {
+        this.name = new CarName(name);
+        this.index = carIndex;
+        this.moveStrategy = moveStrategy;
     }
 
     public void move(CustomRandomAble random) {
@@ -53,7 +37,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getHistoryIndex(int index) {
@@ -65,11 +49,11 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(getIndex(), car.getIndex());
+        return Objects.equals(getIndex(), car.getIndex()) && Objects.equals(moveStrategy, car.moveStrategy) && Objects.equals(getName(), car.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIndex());
+        return Objects.hash(getIndex(), moveStrategy, getName());
     }
 }

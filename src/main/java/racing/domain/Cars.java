@@ -18,7 +18,7 @@ public class Cars {
         MoveStrategyAble moveStrategy = new MoveStrategy();
 
         for (String participatingCarName : arrParticipatingCarNames) {
-            cars.add(new Car(moveStrategy, participatingCarName));
+            cars.add(new Car(participatingCarName, moveStrategy));
         }
     }
 
@@ -40,12 +40,12 @@ public class Cars {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cars that = (Cars) o;
-        return Objects.equals(get(), that.get());
+        Cars cars1 = (Cars) o;
+        return Objects.equals(cars, cars1.cars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(get());
+        return Objects.hash(cars);
     }
 }
