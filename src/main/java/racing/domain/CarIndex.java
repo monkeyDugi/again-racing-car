@@ -6,39 +6,65 @@ import java.util.Objects;
 
 public class CarIndex {
 
-    private static final int START_INDEX = 1;
+    private static final int START_MOVE_INDEX = 1;
+    private static final int MINIMUM_MOVE_INDEX = 0;
+
+    private static final int NEXT_MOVE_INDEX = 1;
+
     private final List<Integer> indexes = new ArrayList<>();
 
     public CarIndex() {
-        this.indexes.add(START_INDEX);
+//        this.indexes.add(START_INDEX);
     }
 
     public CarIndex(int index) {
-        if (index < START_INDEX) {
-            throw new IllegalArgumentException("최소 시작 index는 " + START_INDEX + "이상 이어야 합니다.");
+        if (index < MINIMUM_MOVE_INDEX) {
+            throw new IllegalArgumentException("최소 시작 index는 " + MINIMUM_MOVE_INDEX + "이상 이어야 합니다.");
         }
 
         this.indexes.add(index);
     }
 
     public void moveForward() {
-        indexes.add(getLastIndex() + 1);
+        if (indexes.isEmpty()) {
+            indexes.add(START_MOVE_INDEX);
+
+            return;
+        }
+
+        indexes.add(getLastIndex() + NEXT_MOVE_INDEX);
     }
 
     public void stop() {
+        if (indexes.isEmpty()) {
+            indexes.add(MINIMUM_MOVE_INDEX);
+
+            return;
+        }
+
         indexes.add(getLastIndex());
     }
 
     public int getLastIndex() {
+        validateNotMove();
+
         return indexes.get(size() - 1);
     }
 
-    public int getIndex(int index) {
+    int getIndex(int index) {
         return indexes.get(index);
     }
 
     public int size() {
         return indexes.size();
+    }
+
+    private void validateNotMove() {
+        int index = size() - 1;
+
+        if (index < 0) {
+            throw new IllegalArgumentException("자동차가 이동한 기록이 없습니다.");
+        }
     }
 
     @Override
