@@ -13,9 +13,7 @@ public class CarIndex {
 
     private final List<Integer> indexes = new ArrayList<>();
 
-    public CarIndex() {
-//        this.indexes.add(START_INDEX);
-    }
+    public CarIndex() {}
 
     public CarIndex(int index) {
         if (index < MINIMUM_MOVE_INDEX) {
@@ -51,6 +49,14 @@ public class CarIndex {
         return indexes.get(size() - 1);
     }
 
+    private void validateNotMove() {
+        int index = size() - 1;
+
+        if (index < 0) {
+            throw new IllegalArgumentException("자동차가 이동한 기록이 없습니다.");
+        }
+    }
+    
     int getIndex(int index) {
         return indexes.get(index);
     }
@@ -59,13 +65,6 @@ public class CarIndex {
         return indexes.size();
     }
 
-    private void validateNotMove() {
-        int index = size() - 1;
-
-        if (index < 0) {
-            throw new IllegalArgumentException("자동차가 이동한 기록이 없습니다.");
-        }
-    }
 
     @Override
     public boolean equals(Object o) {
