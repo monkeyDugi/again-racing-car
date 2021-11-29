@@ -46,17 +46,17 @@ public class CarIndex {
     public int getLastIndex() {
         validateNotMove();
 
-        return indexes.get(size() - 1);
+        return indexes.get(indexes.size() - 1);
     }
 
     private void validateNotMove() {
-        int index = size() - 1;
+        int index = indexes.size() - 1;
 
         if (index < 0) {
             throw new IllegalArgumentException("자동차가 이동한 기록이 없습니다.");
         }
     }
-    
+
     int getIndex(int index) {
         return indexes.get(index);
     }
