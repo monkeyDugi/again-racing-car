@@ -23,6 +23,10 @@ public class CarIndex {
         this.indexes.add(index);
     }
 
+    public CarIndex(List<Integer> indexes) {
+        this.indexes.addAll(indexes);
+    }
+
     public void moveForward() {
         if (indexes.isEmpty()) {
             indexes.add(START_MOVE_INDEX);
@@ -55,7 +59,7 @@ public class CarIndex {
         }
     }
 
-    int getIndex(int index) {
+    public int getIndex(int index) {
         return indexes.get(index);
     }
 
