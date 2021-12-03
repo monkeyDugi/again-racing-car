@@ -26,7 +26,6 @@ public class CarIndex {
     public void moveForward() {
         if (indexes.isEmpty()) {
             indexes.add(START_MOVE_INDEX);
-
             return;
         }
 
@@ -36,7 +35,6 @@ public class CarIndex {
     public void stop() {
         if (indexes.isEmpty()) {
             indexes.add(MINIMUM_MOVE_INDEX);
-
             return;
         }
 
