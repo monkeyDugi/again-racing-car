@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarIndexTest {
@@ -22,20 +25,30 @@ class CarIndexTest {
         carIndex.stop();
 
         // then
-        assertThat(carIndex.getIndex(0)).isEqualTo(1);
-        assertThat(carIndex.getIndex(1)).isEqualTo(2);
-        assertThat(carIndex.getIndex(2)).isEqualTo(3);
-        assertThat(carIndex.getIndex(3)).isEqualTo(4);
-        assertThat(carIndex.getIndex(4)).isEqualTo(4);
+        List<Integer> expectedIndexes = Arrays.asList(1, 2, 3, 3);
+        CarIndex expectedCarIndex = new CarIndex(expectedIndexes);
+        assertThat(carIndex).isEqualTo(expectedCarIndex);
+
+        assertThat(carIndex.size()).isEqualTo(4);
     }
 
-    @DisplayName("최소 시작 인덱스는 1미만이면 예외")
+    @DisplayName("최소 시작 인덱스는 0미만이면 예외")
     @Test
-    void minimum_index() {
+    void exception_minimum_index() {
         // when
-        Assertions.assertThatThrownBy(() -> new CarIndex(0))
+        Assertions.assertThatThrownBy(() -> new CarIndex(-1))
                 // then
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("최소 시작 index는 1이상 이어야 합니다.");
+                .hasMessage("최소 시작 index는 0이상 이어야 합니다.");
+    }
+
+    @DisplayName("출발하지 않는 자동차의 위치를 가져올 수 없다.")
+    @Test
+    void exception_not_move_index() {
+        // when
+        Assertions.assertThatThrownBy(() -> new CarIndex().getLastIndex())
+                // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차가 이동한 기록이 없습니다.");
     }
 }

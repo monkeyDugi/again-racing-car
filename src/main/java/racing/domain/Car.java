@@ -25,7 +25,6 @@ public class Car {
     public void move(CustomRandomAble random) {
         if (moveStrategy.isMove(random)) {
             index.moveForward();
-
             return;
         }
 

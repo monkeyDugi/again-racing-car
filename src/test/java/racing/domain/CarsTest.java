@@ -27,9 +27,9 @@ class CarsTest {
 
         // then
         List<Car> carList = Arrays.asList(
-                                            new Car(carName1, 2, new MoveStrategy()),
-                                            new Car(carName2, 2, new MoveStrategy()),
-                                            new Car(carName3, 2, new MoveStrategy())
+                                            new Car(carName1, 1, new MoveStrategy()),
+                                            new Car(carName2, 1, new MoveStrategy()),
+                                            new Car(carName3, 1, new MoveStrategy())
                                         );
         Cars expected = new Cars(carList);
 
@@ -55,9 +55,9 @@ class CarsTest {
 
         // then
         List<Car> carList = Arrays.asList(
-                                        new Car(carName1,1, new MoveStrategy()),
-                                        new Car(carName2,1, new MoveStrategy()),
-                                        new Car(carName3,1, new MoveStrategy())
+                                        new Car(carName1,0, new MoveStrategy()),
+                                        new Car(carName2,0, new MoveStrategy()),
+                                        new Car(carName3,0, new MoveStrategy())
                                     );
         Cars expected = new Cars(carList);
 

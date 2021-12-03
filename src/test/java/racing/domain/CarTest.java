@@ -20,7 +20,7 @@ class CarTest {
         int carIndex = car.getIndex();
 
         // then
-        assertThat(carIndex).isEqualTo(2);
+        assertThat(carIndex).isEqualTo(1);
     }
 
     @DisplayName("random 값이 4 미만이면 정지 한다.")
@@ -35,7 +35,7 @@ class CarTest {
         int carIndex = car.getIndex();
 
         // then
-        assertThat(carIndex).isEqualTo(1);
+        assertThat(carIndex).isZero();
     }
 
     @DisplayName("자동차는 이름을 갖는다.")
